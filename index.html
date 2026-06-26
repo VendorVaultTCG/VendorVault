@@ -302,12 +302,12 @@
 
       const payments=sales.reduce((m,x)=>{m[x.paymentMethod]=(m[x.paymentMethod]||0)+saleRevenue(x); return m;},{});
       const cats=sales.reduce((m,x)=>{ const item=state.inventory.find(i=>i.id===x.itemId), c=item?.category||"Unknown"; m[c]=(m[c]||0)+Number(x.quantitySold||1); return m;},{});
-      const paymentText=Object.entries(payments).map(([k,v])=>`- ${k}: ${money(v)}`).join("\\n")||"- No payments";
-      const catText=Object.entries(cats).map(([k,v])=>`- ${k}: ${v} sold`).join("\\n")||"- No sales";
+      const paymentText=Object.entries(payments).map(([k,v])=>`- ${k}: ${money(v)}`).join("\n")||"- No payments";
+      const catText=Object.entries(cats).map(([k,v])=>`- ${k}: ${v} sold`).join("\n")||"- No sales";
       const itemsSold=sales.reduce((s,x)=>s+Number(x.quantitySold||1),0);
       const avgProfit=itemsSold ? netProfit/itemsSold : 0;
 
-      const text=`${state.activeShow.name} Report
+const text=`${state.activeShow.name} Report
 Location: ${state.activeShow.location||"N/A"}
 Date: ${today()}
 
